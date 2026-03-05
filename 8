@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С 8 марта!</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to top, #ffe6f0, #fff0f5);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #e91e63;
+    text-align: center;
+    margin: 0.5em;
+  }
+
+  button {
+    padding: 1em 2em;
+    font-size: 1.2em;
+    background-color: #ff80ab;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #e91e63;
+  }
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #fff0f5;
+    border: 2px solid #e91e63;
+    border-radius: 15px;
+    padding: 2em;
+    text-align: center;
+    z-index: 10;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(233,30,99,0.5);
+  }
+
+  .popup.show {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .flower {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at center, #ff4081 0%, #ff80ab 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<h1>С 8 марта!</h1>
+<button onclick="showPopup()">Открыть подарок 🎁</button>
+
+<div class="popup" id="popup">
+  <h2>Поздравляю тебя с праздником весны!</h2>
+  <p>Пусть каждый день будет наполнен радостью, улыбками и счастьем 💐</p>
+</div>
+
+<script>
+  // Показать popup
+  function showPopup() {
+    document.getElementById('popup').classList.add('show');
+  }
+
+  // Генерация падающих цветов
+  const colorsCount = 40;
+  for (let i = 0; i < colorsCount; i++) {
+    let flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.style.left = Math.random() * window.innerWidth + 'px';
+    flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+    flower.style.width = flower.style.height = (10 + Math.random() * 20) + 'px';
+    document.body.appendChild(flower);
+  }
+</script>
+
+</body>
+</html>
